@@ -1,0 +1,8 @@
+server.port=8000
+spring.application.name=SexMachine
+spring.datasource.url=jdbc:postgresql://localhost/testDB
+spring.datasource.username=postgres
+spring.datasource.password=rootroot
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
