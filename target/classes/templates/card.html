@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="css/main_my_project.css" />
+</head>
+<style>
+    .sidebar input, .sidebar textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    }
+    button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    }
+</style>
+<body>
+<div class="header">
+    <div class="header-left">
+
+    </div>
+    <div class="header-center">
+        <button class="icon-btn" aria-label="Профиль">
+            <span>Профиль</span>
+            <i data-lucide="user"></i>
+        </button>
+        <button class="icon-btn" aria-label="Сообщения">
+            <span>Сообщения</span>
+            <i data-lucide="message-circle"></i>
+        </button>
+        <button class="icon-btn" >
+            <span>Знакомства</span>
+            <!-- <i data-lucide="heart"></i>-->
+        </button>
+        <button class="icon-btn" aria-label="Настройки">
+            <span>Настройки</span>
+            <i data-lucide="settings"></i>
+        </button>
+    </div>
+    <div class="header-right">
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="card">
+        <img src="../static/1.png" alt="Фото профиля" width="100">
+        <h2 id="name">Имя Фамилия</h2>
+        <p id="age">Возраст: 25</p>
+        <p id="city">Город: Москва</p>
+        <button onclick="toggleSidebar()">Редактировать профиль</button>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h3>О себе</h3>
+        <textarea id="about">Краткая информация о себе.</textarea>
+
+        <h3>Образование</h3>
+        <input type="text" id="education" value="Университет, факультет, год выпуска.">
+
+        <h3>Работа</h3>
+        <input type="text" id="work" value="Место работы, должность.">
+
+        <h3>Свободное время</h3>
+        <input type="text" id="hobbies" value="Чем увлекаетесь в свободное время.">
+
+        <h3>Личное</h3>
+        <input type="text" id="personal" value="Какие-то интересные личные факты.">
+
+        <h3>Музыка</h3>
+        <input type="text" id="music" value="Любимые музыкальные жанры и исполнители.">
+
+        <button onclick="saveChanges()">Сохранить изменения</button>
+    </div>
+</div>
+
+<script>
+    function toggleSidebar() {
+        let sidebar = document.getElementById("sidebar");
+        sidebar.style.display = sidebar.style.display === "none" ? "block" : "none";
+    }
+
+    function saveChanges() {
+        let aboutText = document.getElementById("about").value;
+        let educationText = document.getElementById("education").value;
+        let workText = document.getElementById("work").value;
+        let hobbiesText = document.getElementById("hobbies").value;
+        let personalText = document.getElementById("personal").value;
+        let musicText = document.getElementById("music").value;
+
+        alert("Данные обновлены:\n\n" +
+            "О себе: " + aboutText + "\n" +
+            "Образование: " + educationText + "\n" +
+            "Работа: " + workText + "\n" +
+            "Свободное время: " + hobbiesText + "\n" +
+            "Личное: " + personalText + "\n" +
+            "Музыка: " + musicText
+        );
+
+        toggleSidebar(); // Закрываем окно редактирования
+    }
+</script>
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("open");
+    }
+</script>
+<div class="heart">
+    <div class="heart-badge">5</div>
+</div>
+<script>
+    lucide.createIcons();
+</script>
+
+<script>
+    fetch("header.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("header").innerHTML = data)
+        .then(() => lucide.createIcons()) // Перерисовываем иконки после вставки
+        .catch(error => console.error("Ошибка загрузки header:", error));
+</script>
+</body>
